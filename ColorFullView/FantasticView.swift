@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FantasticView: UIView {
+open class FantasticView: UIView {
 
 let colors :[UIColor] = [.red,.blue,.brown,.black,.gray,.green,.yellow]
 var colorCounter = 0
@@ -26,8 +26,20 @@ override init(frame: CGRect){
     scheduleColorChange.fire()
 }
     
-    required init?(coder: NSCoder){
+    required public init?(coder: NSCoder){
         super.init(coder: coder)
     }
-
+    public func randomRGBUIColor() -> UIColor{
+        return .randomColor()
+    }
+}
+extension CGFloat{
+    static func random() -> CGFloat {
+        return CGFloat(arc4random())/CGFloat(Int32.max)
+    }
+}
+extension UIColor{
+    static func randomColor() -> UIColor{
+        return UIColor(red: .random(), green: .random(), blue: .random(), alpha: .random())
+    }
 }
